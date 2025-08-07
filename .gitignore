@@ -1,0 +1,35 @@
+# PDF files
+*.pdf
+
+# Ignore binary/executable files
+a.out
+philo
+philo_bonus
+
+# Text files
+*.txt
+
+# Script files
+*.sh
+*.py
+*.js
+*.php
+*.rb
+*.pl
+*.bat
+*.cmd
+*.ps1
+*.vbs
+*.bash
+*.zsh
+*.fish
+
+# Common script directories
+scripts/
+script/
+
+# Build artifacts
+objects/
+
+# Test artifacts
+fails/
