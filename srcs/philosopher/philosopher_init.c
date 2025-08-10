@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_philo.c                                       :+:      :+:    :+:   */
+/*   philosopher_init.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:15:29 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/06 14:21:11 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/08/10 12:03:29 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ t_philo	*init_philo_values(int i, t_table *table)
 	philo = ft_calloc(sizeof(t_philo), 1);
 	philo->table = table;
 	philo->time_multiplier = 1000;
-	philo->start_time = time_in_ms();
-	philo->time_that_eaten = philo->start_time;
+	philo->time_that_eaten = philo->table->start_time;
 	philo->left_fork = i;
 	if (i == table->num_of_philos - 1)
 		philo->right_fork = 0;

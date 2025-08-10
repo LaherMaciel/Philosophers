@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table_struct_handler.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:33:42 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/06 14:14:05 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/08/10 12:03:49 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static t_table	*init_table_values(char **argv, t_table *table)
 	table->forks = ft_calloc(sizeof(pthread_mutex_t), table->num_of_philos);
 	if (!table->forks)
 		return (free_table(table));
+	table->start_time = time_in_ms();
 	return (table);
 }
 

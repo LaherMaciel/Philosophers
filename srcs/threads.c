@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 14:09:38 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/07 15:12:38 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/08/10 12:06:20 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 void	*death(t_table *table, int i)
 {
+	pthread_mutex_lock(&table->print_mutex);
+	printf("%li	%d died\n", get_time_in_ms(table),
+		table->philos[i]->id);
+	pthread_mutex_unlock(&table->print_mutex);
 	pthread_mutex_lock(&table->death);
-	if (!table->is_dead)
-	{
-		pthread_mutex_lock(&table->print_mutex);
-		printf("%li %d died\n", time_in_ms() - table->philos[i]->start_time,
-			table->philos[i]->id);
-		pthread_mutex_unlock(&table->print_mutex);
-		table->is_dead = 1;
-	}
+	table->is_dead = 1;
 	pthread_mutex_unlock(&table->death);
 	return (NULL);
 }
@@ -66,7 +63,7 @@ void	*monitor_routine(void *arg)
 			pthread_mutex_unlock(&table->death);
 			return (NULL);
 		}
-		usleep(1000);
+		usleep(800);
 	}
 	return (NULL);
 }

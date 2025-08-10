@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:40:13 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/06 14:48:27 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/08/10 12:05:35 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_philo
 	int				num_of_times_eaten;
 	int				time_multiplier;
 	long int		current_time;
-	long int		start_time;
 	long int		time_that_eaten;
 	pthread_mutex_t	eat_mutex;
 	pthread_mutex_t	time_mutex;
@@ -65,6 +64,7 @@ typedef struct s_table
 	int				time_to_die;
 	int				num_of_philos;
 	int				num_of_times_to_eat;
+	long int		start_time;
 	t_philo			**philos;
 	pthread_t		*philosopher;
 	pthread_mutex_t	*forks;
@@ -91,7 +91,7 @@ long int	time_in_ms(void);
 t_philo		*printphilosactions(t_philo *philo, int flag);
 t_table		*main_init_table(int argc, char **argv);
 t_table		*free_table(t_table *table);
-int			is_death(t_philo *philo);
+int			is_dead(t_philo *philo);
 t_philo		*monitoring(t_philo *philo);
 int			get_eaten_count(t_table *table, int i);
 int			all_philos_ate_enough(t_table *table);
@@ -111,5 +111,6 @@ int			should_break(t_philo *philo, int eaten);
 void		*routine_loop(void *arg);
 int			lock_forks(t_philo *philo);
 int			print_status(t_philo *philo, char *str);
+long int	get_time_in_ms(t_table *table);
 
 #endif

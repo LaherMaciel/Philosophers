@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   routine_helpers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 13:22:50 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/06 15:58:11 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/08/10 11:50:23 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	is_death(t_philo *philo)
+int	is_dead(t_philo *philo)
 {
 	if (!philo || !philo->table)
 		return (-1);
@@ -36,7 +36,7 @@ int	should_break(t_philo *philo, int eaten)
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->eat_mutex);
-	if (is_death(philo))
+	if (is_dead(philo))
 		return (1);
 	return (0);
 }
@@ -49,16 +49,8 @@ t_philo	*monitoring(t_philo *philo)
 	if ((philo->current_time - philo->time_that_eaten)
 		>= philo->table->time_to_die)
 	{
-		pthread_mutex_lock(&philo->table->death);
-		if (!philo->table->is_dead)
-		{
-			pthread_mutex_lock(&philo->table->print_mutex);
-			printf("%li %d died\n", philo->current_time
-				- philo->start_time, philo->id);
-			pthread_mutex_unlock(&philo->table->print_mutex);
+		if (!is_dead(philo))
 			philo->table->is_dead = 1;
-		}
-		pthread_mutex_unlock(&philo->table->death);
 		return (philo);
 	}
 	return (philo);

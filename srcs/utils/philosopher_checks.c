@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_all_philos.c                                 :+:      :+:    :+:   */
+/*   philosopher_checks.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 13:48:47 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/06 13:59:30 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/08/10 11:28:39 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_all_philos_death(t_table *table)
 	i = 0;
 	while (i < table->num_of_philos)
 	{
-		if (is_death(table->philos[i]))
+		if (is_dead(table->philos[i]))
 			return (1);
 		i++;
 	}

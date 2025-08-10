@@ -14,18 +14,18 @@
 
 t_philo	*think(t_philo *philo)
 {
-	if (is_death(philo))
+	if (is_dead(philo))
 		return (philo);
 	philo->current_time = time_in_ms();
 	if (print_status(philo, "is thinking"))
 		return (philo);
-	usleep(1000);
+	usleep(800);
 	return (philo);
 }
 
 static t_philo	*eat(t_philo *philo)
 {
-	if (is_death(philo))
+	if (is_dead(philo))
 		return (philo);
 	if (lock_forks(philo))
 		return (philo);
@@ -47,7 +47,7 @@ static t_philo	*eat(t_philo *philo)
 
 static t_philo	*to_sleep(t_philo *philo)
 {
-	if (is_death(philo))
+	if (is_dead(philo))
 		return (philo);
 	philo->current_time = time_in_ms();
 	if (print_status(philo, "is sleeping"))
@@ -71,16 +71,16 @@ void	*routine_loop(void *arg)
 		if (should_break(philo, eaten))
 			break ;
 		philo = monitoring(philo);
-		if (is_death(philo))
+		if (is_dead(philo))
 			break ;
 		philo = eat(philo);
-		if (is_death(philo))
+		if (is_dead(philo))
 			break ;
 		philo = to_sleep(philo);
-		if (is_death(philo))
+		if (is_dead(philo))
 			break ;
 		philo = think(philo);
-		if (is_death(philo))
+		if (is_dead(philo))
 			break ;
 	}
 	return (NULL);

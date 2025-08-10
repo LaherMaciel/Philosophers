@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "philo.h"
-
+/*
 void	print_allinfo(t_philo *philo)
 {
 	printf("Number of philosophers: %d\n", philo->table->num_of_philos);
@@ -67,7 +67,7 @@ void	print_tableinfo(t_table *table)
 			table->num_of_times_to_eat);
 	printf("\n");
 }
-
+*/
 void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	i;
@@ -77,8 +77,8 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &s[i], 1);
 }
 
-int	print_status(t_philo *philo, char *str)
-{
+/**
+ * 
 	pthread_mutex_lock(&philo->table->death);
 	if (philo->table->is_dead)
 	{
@@ -86,17 +86,17 @@ int	print_status(t_philo *philo, char *str)
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->table->death);
+ */
+int	print_status(t_philo *philo, char *str)
+{
 	pthread_mutex_lock(&philo->table->print_mutex);
-	pthread_mutex_lock(&philo->table->death);
-	if (!philo->table->is_dead)
+	if (!is_dead(philo))
 	{
-		printf("%li %d %s\n", philo->current_time - philo->start_time,
+		printf("%li	%d %s\n", get_time_in_ms(philo->table),
 			philo->id, str);
-		pthread_mutex_unlock(&philo->table->death);
 		pthread_mutex_unlock(&philo->table->print_mutex);
 		return (0);
 	}
-	pthread_mutex_unlock(&philo->table->death);
 	pthread_mutex_unlock(&philo->table->print_mutex);
 	return (1);
 }
