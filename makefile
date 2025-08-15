@@ -103,6 +103,8 @@ $(OBJECTS_DIRECTORY)%.o : $(TABLE_DIRECTORY)%.c $(HEADERS)
 $(OBJECTS_DIRECTORY)%.o : $(UTILS_DIRECTORY)%.c $(HEADERS)
 	@$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
 
+all: $(NAME)
+
 # Clean targets
 clean:
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Removing object files..."
