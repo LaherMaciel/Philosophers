@@ -1,0 +1,17 @@
+Setting locale to en_US
+main.c: OK!
+philo.h: OK!
+threads.c: OK!
+table_struct_handler.c: OK!
+philosopher_free.c: OK!
+philosopher_init.c: OK!
+philosopher_struct.c: OK!
+philosopher_routine.c: OK!
+routine_helpers.c: OK!
+routine_utils.c: OK!
+fork_management.c: OK!
+print_utils.c: OK!
+memory_utils.c: OK!
+input_utils.c: OK!
+philosopher_checks.c: OK!
+general_utils.c: OK!

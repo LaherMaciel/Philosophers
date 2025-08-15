@@ -6,7 +6,7 @@
 /*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:33:42 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/15 13:33:58 by lawences         ###   ########.fr       */
+/*   Updated: 2025/08/15 13:48:17 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,30 @@ static t_table	*init_table_values(char **argv, t_table *table)
 	return (table);
 }
 
-static t_table	*init_table(int argc, char **argv)
+static int	the_while(int val, char **argv)
 {
-	t_table	*table;
-	int		i;
-	int		val;
+	int	i;
 
-	if (argc != 5 && argc != 6)
-		return (ft_putstr_fd("Error: Invalid number of arguments.\n", 2), NULL);
 	i = 0;
 	while (argv[++i])
 	{
 		val = ft_atoi(argv[i]);
-		if (ft_isdigit2(argv[i]) == 0 && val <= 0)
-			return (ft_putstr_fd("Error: Invalid Argment.\n", 2), NULL);
-		if ((i == 1 && val > 200) || (i >= 2 && i != 5 && val < 60))
-			return (ft_putstr_fd("Error: Invalid Argment.\n", 2), NULL);
+		if ((ft_isdigit2(argv[i]) == 0 && val <= 0) || (i == 1 && val > 200)
+			|| (i >= 2 && i != 5 && val < 60))
+			return (1);
 	}
+	return (0);
+}
+
+static t_table	*init_table(int argc, char **argv)
+{
+	t_table	*table;
+	int		i;
+
+	if (argc != 5 && argc != 6)
+		return (ft_putstr_fd("Error: Invalid number of arguments.\n", 2), NULL);
+	if (the_while(0, argv))
+		return (ft_putstr_fd("Error: Invalid Argment.\n", 2), NULL);
 	table = ft_calloc(sizeof(t_table), 1);
 	if (!table)
 		return (NULL);
