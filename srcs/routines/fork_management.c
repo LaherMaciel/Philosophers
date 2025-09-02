@@ -6,7 +6,7 @@
 /*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:30:00 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/10 11:52:51 by lawences         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:44:20 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int	lock_forks_aux(t_philo *philo)
 		return (1);
 	}
 	philo->current_time = time_in_ms();
-	print_status(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->table->forks[philo->left_fork]);
 	if (is_dead(philo))
 	{
@@ -45,7 +44,6 @@ int	lock_forks(t_philo *philo)
 			return (1);
 		}
 		philo->current_time = time_in_ms();
-		print_status(philo, "has taken a fork");
 		pthread_mutex_lock(&philo->table->forks[philo->right_fork]);
 		if (is_dead(philo))
 		{

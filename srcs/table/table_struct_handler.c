@@ -6,7 +6,7 @@
 /*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:33:42 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/15 13:48:17 by lawences         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:42:49 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static t_table	*init_table_values(char **argv, t_table *table)
 	return (table);
 }
 
-static int	the_while(int val, char **argv)
+static int	the_while(long val, char **argv)
 {
 	int	i;
 
@@ -71,9 +71,21 @@ static int	the_while(int val, char **argv)
 	while (argv[++i])
 	{
 		val = ft_atoi(argv[i]);
-		if ((ft_isdigit2(argv[i]) == 0 && val <= 0) || (i == 1 && val > 200)
-			|| (i >= 2 && i != 5 && val < 60))
-			return (1);
+		if ((ft_isdigit2(argv[i]) == 0 && val <= 0))
+			return (ft_putstr_fd("Error: Argument ", 2),
+				ft_putstr_fd(argv[i], 2),
+				ft_putstr_fd(" is not a valid positive number.\n", 2), 1);
+		if (i == 1 && val > 200)
+			return (ft_putstr_fd("Error: Number of philosophers"
+					" is greater than 200.\n", 2), 1);
+		if (i >= 2 && i != 5 && val < 60)
+			return (ft_putstr_fd("Error: Argument ", 2),
+				ft_putstr_fd(argv[i], 2),
+				ft_putstr_fd(" is less than 60.\n", 2), 1);
+		if (i >= 2 && val >= INT_MAX)
+			return (ft_putstr_fd("Error: Argument ", 2),
+				ft_putstr_fd(argv[i], 2),
+				ft_putstr_fd(" exceeds INT_MAX.\n", 2), 1);
 	}
 	return (0);
 }
@@ -86,14 +98,16 @@ static t_table	*init_table(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (ft_putstr_fd("Error: Invalid number of arguments.\n", 2), NULL);
 	if (the_while(0, argv))
-		return (ft_putstr_fd("Error: Invalid Argment.\n", 2), NULL);
+		return (NULL);
 	table = ft_calloc(sizeof(t_table), 1);
 	if (!table)
-		return (NULL);
+		return (ft_putstr_fd("Error: Invalid table "
+				"initialization.\n", 2), NULL);
 	table->philosopher = ft_calloc(sizeof(pthread_t), ft_atoi(argv[1]));
 	table = init_table_values(argv, table);
 	if (!table)
-		return (NULL);
+		return (ft_putstr_fd("Error: Invalid table "
+				"initialization.\n", 2), NULL);
 	i = -1;
 	while (++i < table->num_of_philos)
 		pthread_mutex_init(&table->forks[i], NULL);
@@ -108,9 +122,6 @@ t_table	*main_init_table(int argc, char **argv)
 
 	table = init_table(argc, argv);
 	if (!table)
-	{
-		ft_putstr_fd("Error: Invalid table initialization.\n", 2);
 		return (NULL);
-	}
 	return (table);
 }

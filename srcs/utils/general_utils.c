@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lahermaciel <lahermaciel@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 20:12:22 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/06 13:51:29 by lahermaciel      ###   ########.fr       */
+/*   Updated: 2025/09/02 17:29:48 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,7 @@ size_t	ft_atoi(const char *str)
 		index++;
 	}
 	while (ft_isdigit(str[index]))
-	{
-		number = number * 10;
-		number = number + (str[index] - '0');
-		index++;
-	}
+		number = (number * 10) + (str[index++] - '0');
 	if (sign != 1)
 		return (-number);
 	return (number);

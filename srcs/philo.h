@@ -6,7 +6,7 @@
 /*   By: lawences <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:40:13 by lahermaciel       #+#    #+#             */
-/*   Updated: 2025/08/10 12:05:35 by lawences         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:25:17 by lawences         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <pthread.h>
 # include <sys/time.h>
 # include <stdbool.h>
+# include <limits.h>
 
 # define CLEAR "\033c"
 # define RED "\033[1;31m"
