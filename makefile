@@ -54,7 +54,7 @@ OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECT_LIST))
 
 # Compiler settings
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 INCLUDES = -I$(SRCS_DIRECTORY)
 
 # Colors
