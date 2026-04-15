@@ -72,3 +72,11 @@ tests/
 *.su
 *.idb
 *.pdb
+# Subject and evaluation files
+*.pdf
+*.tgz
+en.subject*
+*eval_sheet*
+*eval*
+*.zip
+
